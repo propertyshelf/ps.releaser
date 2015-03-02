@@ -58,6 +58,7 @@ def release_diazo(data):
                 with open(manifest_file, 'wb') as configfile:
                     manifest.write(configfile)
     create_zipfile(tmp_folder, data.get('workingdir'), package_name)
+    shutil.rmtree(tmp_folder)
 
 
 def create_zipfile(src, dist, package_name):
