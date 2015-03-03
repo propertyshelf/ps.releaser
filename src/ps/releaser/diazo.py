@@ -13,8 +13,8 @@ import zipfile
 
 SETUP_CONFIG_FILE = 'setup.cfg'
 SECTION = 'ps.releaser'
-OPTION_DIAZO_PATH = 'diazo_path'
-OPTION_TITLE_UPDATE = 'add_version_to_title'
+OPTION_DIAZO_PATH = 'diazo_export.path'
+OPTION_TITLE_UPDATE = 'diazo_export.adjust_title'
 
 
 def release_diazo(data):
