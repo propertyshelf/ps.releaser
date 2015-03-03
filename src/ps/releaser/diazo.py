@@ -13,6 +13,7 @@ import zipfile
 
 SETUP_CONFIG_FILE = 'setup.cfg'
 SECTION = 'ps.releaser'
+OPTION_ENABLED = 'diazo_export.enabled'
 OPTION_DIAZO_PATH = 'diazo_export.path'
 OPTION_TITLE_UPDATE = 'diazo_export.adjust_title'
 
@@ -24,6 +25,17 @@ def release_diazo(data):
 
     config = ConfigParser()
     config.read(SETUP_CONFIG_FILE)
+
+    if not config.has_option(SECTION, OPTION_ENABLED):
+        return
+
+    try:
+        enabled = config.getboolean(SECTION,OPTION_ENABLED)
+    except ValueError:
+        pass
+
+    if not enabled:
+        return
 
     if config.has_option(SECTION, OPTION_DIAZO_PATH):
         path = config.get(SECTION, OPTION_DIAZO_PATH)
