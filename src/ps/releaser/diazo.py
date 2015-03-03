@@ -4,12 +4,15 @@
 # python imports
 from ConfigParser import ConfigParser
 from zest.releaser import utils
+import logging
 import os
 import pkg_resources
 import shutil
 import tempfile
 import zipfile
 
+
+logger = logging.getLogger(__name__)
 
 SETUP_CONFIG_FILE = 'setup.cfg'
 SECTION = 'ps.releaser'
@@ -30,17 +33,25 @@ def release_diazo(data):
         return
 
     try:
-        enabled = config.getboolean(SECTION,OPTION_ENABLED)
+        enabled = config.getboolean(SECTION, OPTION_ENABLED)
     except ValueError:
         pass
 
     if not enabled:
         return
 
-    if config.has_option(SECTION, OPTION_DIAZO_PATH):
-        path = config.get(SECTION, OPTION_DIAZO_PATH)
-        if path is None:
-            return
+    if not config.has_option(SECTION, OPTION_DIAZO_PATH):
+        return
+
+    path = config.get(SECTION, OPTION_DIAZO_PATH)
+    if path is None:
+        return
+
+    if not os.path.exists(path):
+        logger.warning(
+            'Diazo path does not exist. We can not create a zip file.'
+        )
+        return
 
     if not utils.ask('Create a zip file of the Diazo Theme?', default=True):
         return
@@ -83,7 +94,7 @@ def create_zipfile(src, dist, package_name):
 
     # We need the full path.
     filename = os.path.join(dist, filename)
-    print('Creating file: {0}'.format(filename))
+    logger.info('Creating zip file at: {0}'.format(filename))
 
     zf = zipfile.ZipFile(filename, 'w')
     for dirpath, dirnames, filenames in os.walk('./'):
