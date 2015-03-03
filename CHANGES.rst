@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2015-03-03)
 ----------------
 
 - Use the ``diazo_export`` prefix for settings related to diazo zip file export.
