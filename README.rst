@@ -59,7 +59,7 @@ If you want to use the latest development version from GitHub, add ``ps.releaser
     ps.releaser = git git@github.com:propertyshelf/ps.releaser.git
 
 
-This creates the ``zest.releaser`` executabled in your bin-directory.
+This creates the ``zest.releaser`` executables in your bin-directory.
 Create a release as you're used to::
 
     $ ./bin/fullrelease
