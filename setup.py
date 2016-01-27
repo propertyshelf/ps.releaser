@@ -53,6 +53,9 @@ setup(
         ]
     },
     entry_points={
+        'console_scripts': [
+            'release_diazo = ps.releaser.diazo:main',
+        ],
         'zest.releaser.releaser.after': [
             'release_diazo=ps.releaser.diazo:release_diazo',
         ],
