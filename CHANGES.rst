@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2016-02-08)
 ----------------
 
 - Added console script to only release diazo theme as zip.
